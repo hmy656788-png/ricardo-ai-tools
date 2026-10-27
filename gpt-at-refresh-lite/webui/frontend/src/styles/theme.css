@@ -1,0 +1,189 @@
+/* Claude 风格管理后台主题：暖白底色 + 深炭黑 + 陶土橙，支持深色模式 */
+
+:root {
+  /* 使用本机字体：中文与英文统一呈现，离线使用也无需加载外部字体。 */
+  --app-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --app-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --el-font-family: var(--app-font-sans);
+  --el-font-size-base: 14px;
+  --el-font-size-small: 13px;
+  --el-font-size-extra-small: 12px;
+  --el-font-weight-primary: 500;
+
+  /* 主色：Claude 风格陶土橙，覆盖 Element Plus primary */
+  --el-color-primary: #d97757;
+  --el-color-primary-light-3: #e39a7d;
+  --el-color-primary-light-5: #eab29d;
+  --el-color-primary-light-7: #f1cfc2;
+  --el-color-primary-light-8: #f5ded6;
+  --el-color-primary-light-9: #faeee9;
+  --el-color-primary-dark-2: #b95e3f;
+
+  /* Element Plus 中性变量同步为 Claude 的暖灰体系 */
+  --el-text-color-primary: #2b2926;
+  --el-text-color-regular: #4a4540;
+  --el-text-color-secondary: #776f68;
+  --el-text-color-placeholder: #9c938a;
+  --el-border-color: #ddd5cc;
+  --el-border-color-light: #e7dfd5;
+  --el-border-color-lighter: #eee8e2;
+  --el-fill-color: #f5f1eb;
+  --el-fill-color-light: #efebe6;
+  --el-fill-color-lighter: #f8f5f1;
+  --el-bg-color: #fffdfa;
+  --el-bg-color-page: #f5f1eb;
+
+  /* 自定义变量 */
+  --brand: #d97757;
+  --brand-dark: #a84f35;
+  --app-sidebar-bg: #fbf9f6;
+  --app-header-bg: #fbf9f6;
+  --app-content-bg: #f5f1eb;
+  --app-border: var(--el-border-color-light);
+  --app-title: var(--el-text-color-primary);
+  /* 日志：深棕黑终端风 */
+  --app-log-bg: #211f1d;
+  --app-log-text: #e8e1d8;
+}
+
+html.dark {
+  --el-color-primary: #e08a6a;
+  --el-color-primary-light-3: #c7775d;
+  --el-color-primary-light-5: #9d5e4a;
+  --el-color-primary-light-7: #684234;
+  --el-color-primary-light-8: #4d3329;
+  --el-color-primary-light-9: #382820;
+  --el-color-primary-dark-2: #f0b19a;
+  --el-color-primary-rgb: 224, 138, 106;
+  --el-text-color-primary: #f1ebe4;
+  --el-text-color-regular: #ddd4cb;
+  --el-text-color-secondary: #b4a99f;
+  --el-text-color-placeholder: #8f857c;
+  --el-text-color-disabled: #716a63;
+  --el-border-color: #403b36;
+  --el-border-color-darker: #635b54;
+  --el-border-color-dark: #574f48;
+  --el-border-color-light: #4a443f;
+  --el-border-color-lighter: #575049;
+  --el-border-color-extra-light: #302d2a;
+  --el-fill-color-darker: #4a433d;
+  --el-fill-color-dark: #3c3732;
+  --el-fill-color: #302c29;
+  --el-fill-color-light: #39342f;
+  --el-fill-color-lighter: #282522;
+  --el-fill-color-extra-light: #211f1d;
+  --el-fill-color-blank: #211f1d;
+  --el-bg-color: #211f1d;
+  --el-bg-color-overlay: #211f1d;
+  --el-bg-color-page: #191817;
+  --el-button-disabled-bg-color: #4d3329;
+  --el-button-disabled-border-color: #684234;
+  --el-button-disabled-text-color: #8f857c;
+  --brand: #e08a6a;
+  --app-sidebar-bg: #25221f;
+  --app-header-bg: #25221f;
+  --app-content-bg: #191817;
+  --app-log-bg: #151413;
+  --app-log-text: #e8e1d8;
+}
+
+/* Element Plus' dark preset otherwise keeps cool blue-gray card/input defaults. */
+html.dark .el-card {
+  --el-card-bg-color: var(--el-bg-color);
+  --el-fill-color-blank: var(--el-bg-color);
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app {
+  margin: 0;
+  height: 100%;
+  font-family: var(--app-font-sans);
+}
+
+body {
+  background: var(--app-content-bg);
+  color: var(--el-text-color-primary);
+  font-size: var(--el-font-size-base);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 原生按钮也继承页面字体；仅统一字族，不覆盖控件自己的尺寸与行高。 */
+button, input, textarea, select { font-family: inherit; }
+
+.el-table { font-size: var(--el-font-size-small); font-variant-numeric: tabular-nums; }
+.el-table th.el-table__cell { font-weight: 500; }
+.el-table .el-button--small { font-size: inherit; font-weight: 400; }
+.el-dialog__title { font-size: 18px; font-weight: 600; line-height: 1.4; }
+
+/* 统计卡片 */
+.stat-card { border-radius: 8px; overflow: hidden; }
+.stat-card .stat-value { font-size: 28px; font-weight: 600; line-height: 1.1; }
+.stat-card .stat-label { font-size: 13px; color: var(--el-text-color-secondary); margin-top: 4px; }
+
+/* 实时日志框 */
+.log-box {
+  background: var(--app-log-bg);
+  color: var(--app-log-text);
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: var(--app-font-mono);
+  font-size: 12px;
+  line-height: 1.55;
+  height: 320px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.log-box .line.err  { color: #f48771; }
+.log-box .line.warn { color: #dcdcaa; }
+.log-box .line.ok   { color: #6a9955; }
+.log-box .line.evt  { color: #e8a07e; }
+
+/* 页面 */
+.page { padding: 4px; }
+.page .el-card { margin-bottom: 16px; }
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--app-title);
+  margin: 0 0 12px;
+}
+.hint { color: var(--el-text-color-secondary); font-size: 12px; line-height: 1.6; }
+.mono, .mono .el-input__inner, .mono .el-textarea__inner {
+  font-family: var(--app-font-mono);
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+}
+
+/* 明文凭证展示（注册完成提示里的密码）：等宽 + 可选中，方便直接框选复制 */
+.cred-line { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+.cred-label { font-size: 12px; color: var(--el-text-color-secondary); }
+.cred-val {
+  font-family: var(--app-font-mono);
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--el-fill-color-light);
+  user-select: all;
+  word-break: break-all;
+}
+
+/* 批量导出弹窗的文本框：不换行 + 横向滚动，
+   长 access_token 一行就是一行，肉眼数行数 = 账号数，不会被折行骗到 */
+.export-area .el-textarea__inner {
+  white-space: pre;
+  overflow-x: auto;
+  font-family: var(--app-font-mono);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* 路由进度条配色（Claude 陶土橙） */
+#nprogress .bar { background: var(--brand); height: 2px; }
+#nprogress .peg { box-shadow: 0 0 10px var(--brand), 0 0 5px var(--brand); }
